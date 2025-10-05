@@ -1,0 +1,170 @@
+/* === МОБИЛЬНАЯ АДАПТАЦИЯ === */
+
+/* Оптимизировано для POCO X6 Pro и других Android флагманов */
+
+/* Базовые правила для тач-устройств */
+@media screen and (max-width: 1200px) and (pointer: coarse) {
+  
+  /* Контейнеры */
+  .container {
+    max-width: 100% !important;
+    padding: 16px !important;
+  }
+  
+  .main-content {
+    padding: 16px !important;
+  }
+  
+  /* Сетки в одну колонку */
+  .stats-grid,
+  .panel-grid,
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  /* Увеличиваем элементы формы для удобного тапа */
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: 16px !important;
+    font-size: 16px !important;
+    min-height: 48px !important;
+    border-radius: 10px !important;
+  }
+  
+  /* Увеличиваем кнопки */
+  .btn,
+  button {
+    padding: 16px 24px !important;
+    font-size: 16px !important;
+    min-height: 48px !important;
+    border-radius: 10px !important;
+  }
+  
+  /* Адаптируем модальные окна */
+  .modal-content {
+    width: 95% !important;
+    max-width: 95% !important;
+    margin: 20px auto !important;
+    padding: 20px !important;
+  }
+  
+  /* Адаптируем карточки */
+  .card {
+    padding: 16px !important;
+    margin-bottom: 16px !important;
+  }
+  
+  /* Статистические карточки */
+  .stat-card {
+    padding: 20px 16px !important;
+  }
+  
+  .stat-value {
+    font-size: 1.8rem !important;
+  }
+  
+  /* Транзакции */
+  .transaction-item {
+    padding: 16px !important;
+    margin-bottom: 12px !important;
+  }
+  
+  /* Бургер меню */
+  .burger-button {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  
+  .burger-menu {
+    width: 100% !important;
+  }
+  
+  .burger-item {
+    padding: 16px 20px !important;
+    font-size: 16px !important;
+    min-height: 48px !important;
+  }
+  
+  /* Скрываем плавающие кнопки на очень узких экранах */
+  @media screen and (max-width: 480px) {
+    #quickActionsPanel {
+      display: none !important;
+    }
+  }
+}
+
+/* Специально для планшетов */
+@media screen and (min-width: 768px) and (max-width: 1024px) and (pointer: coarse) {
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .container {
+    padding: 24px !important;
+  }
+  
+  #quickActionsPanel {
+    bottom: 100px !important;
+    right: 30px !important;
+  }
+}
+
+/* Ландшафтная ориентация на мобильных */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  
+  .modal-content {
+    max-height: 80vh !important;
+    padding: 16px !important;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  #quickActionsPanel {
+    bottom: 20px !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+  }
+  
+  #quickActionsPanel button {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 18px !important;
+  }
+}
+
+/* Улучшения для доступности на мобильных */
+@media (pointer: coarse) {
+  
+  /* Увеличиваем область тапа */
+  button,
+  .btn,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Убираем hover эффекты */
+  .card:hover,
+  .btn:hover,
+  .stat-card:hover {
+    transform: none;
+  }
+  
+  /* Улучшаем контрастность */
+  .form-input:focus,
+  .form-select:focus {
+    border-width: 3px;
+  }
+}
