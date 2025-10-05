@@ -53,18 +53,13 @@ function createTransactionsHash(transactions) {
 // Функция обновления баланса с улучшенной обработкой ошибок
 function updateBalance() {
   try {
-    // Получаем свежие данные из localStorage
     const latestTransactions = JSON.parse(localStorage.getItem('transactions') || '[]');
-    
-    // Создаем детальный хеш для сравнения
     const currentHash = createTransactionsHash(latestTransactions);
     const currentCount = latestTransactions.length;
     
-    // Проверяем любые изменения: количество ИЛИ содержимое
     const transactionsChanged = (window.lastTransactionsCount !== currentCount) || 
                                (window.lastTransactionsHash !== currentHash);
     
-    // Обновляем глобальные переменные
     if (typeof window !== 'undefined' && window.transactions !== undefined) {
       window.transactions = latestTransactions;
     }
@@ -77,7 +72,6 @@ function updateBalance() {
       return sum + amount;
     }, 0);
     
-    // ВСЕГДА обновляем баланс (это не вызывает прыжков)
     const balanceElements = document.querySelectorAll('.balance-amount, [data-balance], #currentBalance, .balance');
     balanceElements.forEach((element) => {
       if (element) {
@@ -85,11 +79,9 @@ function updateBalance() {
       }
     });
     
-    // Если обнаружены изменения в транзакциях - обновляем список
     if (transactionsChanged) {
       console.log(`🔄 Обнаружены изменения в транзакциях (count: ${window.lastTransactionsCount}→${currentCount}), обновляем интерфейс`);
       
-      // Безопасно обновляем список транзакций
       try {
         if (typeof renderTransactions === 'function') {
           renderTransactions();
