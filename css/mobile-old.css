@@ -1,0 +1,105 @@
+/* === ОПТИМИЗИРОВАННАЯ МОБИЛЬНАЯ АДАПТАЦИЯ === */
+/* Разработано специально для устройств с тач-экранами */
+/* Поддерживает POCO X6 Pro и другие Android флагманы */
+
+/* Базовые правила для мобильных устройств */
+@media screen and (max-width: 1200px) and (pointer: coarse) {
+  /* Контейнеры */
+  .container {
+    max-width: 100% !important;
+    padding: 15px !important;
+  }
+  
+  .main-content {
+    padding: 15px !important;
+  }
+  
+  /* Сетки в одну колонку */
+  .stats-grid,
+  .panel-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+  
+  /* Увеличиваем элементы формы */
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 16px !important;
+    font-size: 16px !important;
+    min-height: 48px !important;
+    border-radius: 8px !important;
+  }
+  
+  /* Увеличиваем кнопки */
+  .btn,
+  button {
+    padding: 16px 24px !important;
+    font-size: 16px !important;
+    min-height: 48px !important;
+    border-radius: 8px !important;
+  }
+  
+  /* Адаптируем модальные окна */
+  .modal-content {
+    width: 95% !important;
+    max-width: 95% !important;
+    margin: 20px auto !important;
+  }
+  
+  /* Адаптируем транзакции */
+  .transaction-item {
+    padding: 15px !important;
+    margin-bottom: 10px !important;
+  }
+}
+
+/* Принудительные правила для класса mobile-device */
+.mobile-device .container {
+  max-width: 100% !important;
+  padding: 15px !important;
+}
+
+.mobile-device .stats-grid,
+.mobile-device .panel-grid {
+  grid-template-columns: 1fr !important;
+  gap: 15px !important;
+}
+
+.mobile-device .form-group input,
+.mobile-device .form-group select,
+.mobile-device .form-group textarea {
+  padding: 16px !important;
+  font-size: 16px !important;
+  min-height: 48px !important;
+  border-radius: 8px !important;
+}
+
+.mobile-device .btn,
+.mobile-device button {
+  padding: 16px 24px !important;
+  font-size: 16px !important;
+  min-height: 48px !important;
+  border-radius: 8px !important;
+}
+
+/* Ультра-принудительные правила */
+.force-mobile .container,
+.force-mobile .stats-grid,
+.force-mobile .panel-grid {
+  max-width: 100% !important;
+  grid-template-columns: 1fr !important;
+  padding: 15px !important;
+  gap: 15px !important;
+}
+
+.force-mobile .form-group input,
+.force-mobile .form-group select,
+.force-mobile .form-group textarea,
+.force-mobile .btn,
+.force-mobile button {
+  padding: 16px !important;
+  font-size: 16px !important;
+  min-height: 48px !important;
+  border-radius: 8px !important;
+}
