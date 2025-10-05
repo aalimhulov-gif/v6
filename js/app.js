@@ -1351,7 +1351,7 @@ function handleDailyIncomeSubmit(e) {
   }
 
   saveTransactions();
-  closeModal("dailyIncomeModal");
+  // Форма добавления была обработана
   e.target.reset();
   
   const dailyIncomeDate = document.getElementById("dailyIncomeDate");

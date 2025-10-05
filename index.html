@@ -196,23 +196,6 @@
         </form>
       </div>
     </div>
-    <div id="addCategoryModal" class="modal">
-      <div class="modal-content">
-        <button class="close" onclick="closeModal('addCategoryModal')">
-          &times;
-        </button>
-        <h2>Добавить категорию</h2>
-        <p style="color: var(--text-muted)">
-          Быстрое добавление новой категории
-        </p>
-        <button
-          class="btn btn-info"
-          onclick="openModal('categoriesModal');closeModal('addCategoryModal')"
-        >
-          Создать категорию
-        </button>
-      </div>
-    </div>
     <!-- Модальное окно настроек -->
     <div id="settingsModal" class="modal">
       <div class="modal-content">
@@ -938,57 +921,6 @@
               Удалить
             </button>
           </div>
-        </form>
-      </div>
-    </div>
-
-    <div id="dailyIncomeModal" class="modal">
-      <div class="modal-content">
-        <button class="close" onclick="closeModal('dailyIncomeModal')">
-          &times;
-        </button>
-        <h2>📅 Быстрый доход за сегодня</h2>
-        <form id="dailyIncomeForm">
-          <div class="form-group">
-            <label>Зарплата Артура (zł)</label>
-            <input
-              type="number"
-              class="form-control"
-              id="arthurDailyIncome"
-              min="0"
-              step="0.01"
-              placeholder="0"
-            />
-          </div>
-          <div class="form-group">
-            <label>Зарплата Леры (zł)</label>
-            <input
-              type="number"
-              class="form-control"
-              id="leraDailyIncome"
-              min="0"
-              step="0.01"
-              placeholder="0"
-            />
-          </div>
-          <div class="form-group">
-            <label>Категория</label>
-            <select class="form-control" id="dailyIncomeCategory" required>
-              <!-- Категории доходов будут добавлены динамически -->
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Дата</label>
-            <input
-              type="date"
-              class="form-control"
-              id="dailyIncomeDate"
-              required
-            />
-          </div>
-          <button type="submit" class="btn btn-success" style="width: 100%">
-            Добавить ежедневные доходы
-          </button>
         </form>
       </div>
     </div>
@@ -1950,97 +1882,8 @@
       </div>
     </div>
 
-    <!-- Старый элемент уведомлений удален - используется новая система NotificationSystem -->
-    
-    <!-- Debug Panel (только для разработки) -->
-    <div id="debug-panel" style="position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.8); color: white; padding: 10px; border-radius: 8px; font-size: 12px; max-width: 300px; z-index: 9999; display: none;">
-      <div style="margin-bottom: 5px; font-weight: bold;">🔧 Отладка курсора</div>
-      <div id="cursor-debug">Курсор: не определен</div>
-      <div id="element-debug">Элемент: не выбран</div>
-      <div style="margin-top: 5px; font-size: 10px; opacity: 0.7;">
-        Активация: Ctrl+Shift+D или двойной клик в правом верхнем углу
-      </div>
-      <button onclick="toggleDebug()" style="margin-top: 5px; padding: 3px 6px; font-size: 10px;">Скрыть отладку</button>
-    </div>
-    
+    <!-- PWA Scripts -->
     <script>
-      // Debug скрипт для отслеживания курсора (только для разработки)
-      let debugMode = false;
-      
-      function toggleDebug() {
-        debugMode = !debugMode;
-        const panel = document.getElementById('debug-panel');
-        panel.style.display = debugMode ? 'block' : 'none';
-      }
-      
-      // Активировать отладку при нажатии Ctrl+Shift+D
-      document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-          e.preventDefault();
-          toggleDebug();
-        }
-      });
-      
-      // Альтернативный способ: двойной клик в правом верхнем углу
-      let cornerClickCount = 0;
-      let cornerClickTimer = null;
-      
-      document.addEventListener('click', function(e) {
-        // Проверяем клик в правом верхнем углу (50x50 пикселей)
-        if (e.clientX > window.innerWidth - 50 && e.clientY < 50) {
-          cornerClickCount++;
-          
-          if (cornerClickCount === 1) {
-            cornerClickTimer = setTimeout(() => {
-              cornerClickCount = 0;
-            }, 500); // Сброс через 500мс
-          } else if (cornerClickCount === 2) {
-            clearTimeout(cornerClickTimer);
-            cornerClickCount = 0;
-            toggleDebug();
-          }
-        }
-      });
-      
-      // Отслеживание курсора
-      document.addEventListener('mouseover', function(e) {
-        if (!debugMode) return;
-        
-        const cursorDebug = document.getElementById('cursor-debug');
-        const elementDebug = document.getElementById('element-debug');
-        
-        if (cursorDebug && elementDebug) {
-          const computedStyle = getComputedStyle(e.target);
-          const cursor = computedStyle.cursor;
-          const pointerEvents = computedStyle.pointerEvents;
-          const zIndex = computedStyle.zIndex;
-          const position = computedStyle.position;
-          
-          // Проверяем, является ли элемент кнопкой или находится внутри кнопки
-          const isButton = e.target.matches('.goal-actions .btn') || e.target.closest('.goal-actions .btn');
-          const buttonInfo = isButton ? ' [КНОПКА НАЙДЕНА!]' : '';
-          
-          cursorDebug.textContent = `Курсор: ${cursor} | pointer-events: ${pointerEvents} | z-index: ${zIndex}${buttonInfo}`;
-          elementDebug.textContent = `Элемент: ${e.target.tagName}${e.target.className ? '.' + e.target.className.split(' ').join('.') : ''} | position: ${position}`;
-          
-          // Подсвечиваем кнопки для визуальной отладки
-          document.querySelectorAll('.goal-actions .btn').forEach(btn => {
-            btn.style.border = isButton && (e.target === btn || btn.contains(e.target)) ? '3px solid #ff0000' : '';
-          });
-        }
-      });
-      
-      // Тест кликов на кнопки целей
-      document.addEventListener('click', function(e) {
-        if (e.target.closest('.goal-actions .btn')) {
-          console.log('✅ Клик по кнопке цели зарегистрирован:', e.target.textContent.trim());
-          
-          if (debugMode) {
-            showNotification('🔧 Клик зарегистрирован: ' + e.target.textContent.trim(), 'success');
-          }
-        }
-      });
-      
       // === PWA SERVICE WORKER РЕГИСТРАЦИЯ ===
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
