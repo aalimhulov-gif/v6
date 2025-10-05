@@ -100,8 +100,8 @@ function updateBalance() {
       
       // Безопасно обновляем графики и статистику
       try {
-        if (typeof updateChartsAndStats === 'function') {
-          updateChartsAndStats();
+        if (typeof updateDashboard === 'function') {
+          updateDashboard();
         }
       } catch (error) {
         console.error('❌ Ошибка при обновлении графиков:', error);
@@ -216,8 +216,8 @@ window.forceUpdateTransactionsList = function() {
   if (typeof renderTransactions === 'function') {
     renderTransactions();
   }
-  if (typeof updateChartsAndStats === 'function') {
-    updateChartsAndStats();
+  if (typeof updateDashboard === 'function') {
+    updateDashboard();
   }
   if (typeof renderBudgetIndicators === 'function') {
     renderBudgetIndicators();
@@ -1229,7 +1229,7 @@ function handleIncomeSubmit(e) {
   renderTransactions();
   renderCategories();
   renderGoals();
-  updateChartsAndStats();
+  updateDashboard();
   renderBudgetsList();
   renderBudgetIndicators();
 }
@@ -1295,7 +1295,7 @@ function handleExpenseSubmit(e) {
   renderTransactions();
   renderCategories();
   renderGoals();
-  updateChartsAndStats();
+  updateDashboard();
   renderBudgetsList();
   renderBudgetIndicators();
   
@@ -1370,7 +1370,7 @@ function handleDailyIncomeSubmit(e) {
   renderTransactions();
   renderCategories();
   renderGoals();
-  updateChartsAndStats();
+  updateDashboard();
   renderBudgetsList();
   renderBudgetIndicators();
 }
@@ -1408,7 +1408,7 @@ function handleEditTransactionSubmit(e) {
     
     // Обновляем список транзакций после редактирования
     renderTransactions();
-    updateChartsAndStats();
+    updateDashboard();
     renderBudgetIndicators();
   }
 }
@@ -1429,7 +1429,7 @@ function deleteTransaction() {
   
   // Обновляем список транзакций после удаления
   renderTransactions();
-  updateChartsAndStats();
+  updateDashboard();
   renderBudgetIndicators();
 }
 
